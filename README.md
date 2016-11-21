@@ -13,7 +13,7 @@ When you start the CiviCRM image, you can adjust the configuration of the CiviCR
 Specified a custom Drupal Mariadb user. Defaults to drupal.
 
 #### DRUPAL_PASSWORD
-Specified a custom Drupal Mariadb user password. If left blank, a random password will be generated, and logged to stdout.
+Specified a custom Drupal Mariadb user password. If left blank, a random password will be generated, and logged to standard out.
 
 #### DRUPAL_DATABASE
 Specifies the Drupal database name in Mariadb. Defaults to drupal.
@@ -22,19 +22,19 @@ Specifies the Drupal database name in Mariadb. Defaults to drupal.
 Specified a custom CiviCRM Mariadb user. Defaults to civicrm.
 
 #### CIVICRM_PASSWORD
-Specified a custom CiviCRM Mariadb user password. If left blank, a random password will be generated, and logged to stdout.
+Specified a custom CiviCRM Mariadb user password. If left blank, a random password will be generated, and logged to standard out.
 
 #### CIVICRM_DATABASE
 Specifies the CiviCRM database name in Mariadb. Defaults to civicrm.
 
 #### MYSQL_ROOT_PASSWORD
-Specified the root password for Mariadb. If left blank, a random password will be generated, and logged to stdout.
+Specified the root password for Mariadb. If left blank, a random password will be generated, and logged to standard out.
 
 ## Using an external Mariadb\MySQL server
 
 todo: implement this option
 
-## Specificing database credentials
+## Specifying database credentials
 
 todo: implement this option
 
