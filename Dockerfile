@@ -17,7 +17,7 @@ RUN set -x \
 	&& gosu nobody true \
 	&& apt-get purge -y --auto-remove ca-certificates wget
 
-RUN mkdir /docker-entrypoint-initdb.d
+RUN mkdir /mysql-initdb.d
 
 # install "pwgen" for randomizing passwords
 # install "apt-transport-https" for Percona's repo (switched to https-only)
@@ -110,15 +110,55 @@ RUN curl -fSL "https://ftp.drupal.org/files/projects/drupal-${DRUPAL_VERSION}.ta
   && rm drupal.tar.gz \
   && chown -R www-data:www-data sites \
   && mkdir /sites-default-source \
-  && cp -r sites/default/* /sites-default-source/ \
   && cd /var/www/html/sites/all/modules \
   && curl -fSL "https://download.civicrm.org/civicrm-${CIVICRM_VERSION}-drupal.tar.gz" -o civicrm.tar.gz \
   && echo "${CIVICRM_MD5} *civicrm.tar.gz" | md5sum -c - \
   && tar -xzf civicrm.tar.gz \
   && rm civicrm.tar.gz \
-  && chown -R www-data:www-data civicrm
+  && curl -fSL  "https://ftp.drupal.org/files/projects/og-7.x-2.9.tar.gz" -o og.tar.gz \
+  && tar -xf og.tar.gz  \
+  && rm og.tar.gz  \
+  && curl -fSL  "https://ftp.drupal.org/files/projects/rules-7.x-2.9.tar.gz" -o rules.tar.gz \
+  && tar -xf rules.tar.gz  \
+  && rm rules.tar.gz  \
+  && curl -fSL "https://ftp.drupal.org/files/projects/entity-7.x-1.8.tar.gz" -o entity.tar.gz \
+  && tar -xf entity.tar.gz  \
+  && rm entity.tar.gz  \
+  && curl -fSL "https://ftp.drupal.org/files/projects/entityreference-7.x-1.2.tar.gz" -o entityreference.tar.gz \
+  && tar -xf entityreference.tar.gz  \
+  && rm entityreference.tar.gz  \
+  && curl -fSL "https://ftp.drupal.org/files/projects/ctools-7.x-1.11.tar.gz" -o ctools.tar.gz \
+  && tar -xf ctools.tar.gz  \
+  && rm ctools.tar.gz  \
+  && curl -fSL "https://ftp.drupal.org/files/projects/i18n-7.x-1.14.tar.gz" -o il8n.tar.gz \
+  && tar -xf il8n.tar.gz  \
+  && rm il8n.tar.gz \
+  && curl -fSL "https://ftp.drupal.org/files/projects/views_bulk_operations-7.x-3.3.tar.gz" -o views_bulk_operations.tar.gz \
+  && tar -xf views_bulk_operations.tar.gz  \
+  && rm views_bulk_operations.tar.gz  \
+  && curl -fSL "https://ftp.drupal.org/files/projects/views-7.x-3.14.tar.gz" -o views.tar.gz \
+  && tar -xf views.tar.gz  \
+  && rm views.tar.gz  \
+  && curl -fSL "https://ftp.drupal.org/files/projects/webform-7.x-4.14.tar.gz" -o webform.tar.gz \
+  && tar -xf webform.tar.gz \
+  && rm webform.tar.gz \
+  && curl -fSL "https://ftp.drupal.org/files/projects/webform_civicrm-7.x-4.16.tar.gz" -o webform_civicrm.tar.gz \
+  && tar -xf webform_civicrm.tar.gz \
+  && rm webform_civicrm.tar.gz \
+  && curl -fSL "https://ftp.drupal.org/files/projects/libraries-7.x-2.3.tar.gz" -o libraries.tar.gz \
+  && tar -xf libraries.tar.gz \
+  && rm libraries.tar.gz \
+  && curl -fSL "https://ftp.drupal.org/files/projects/options_element-7.x-1.12.tar.gz" -o options_element.tar.gz \
+  && tar -xf options_element.tar.gz \
+  && rm options_element.tar.gz \
+  && chown -R www-data:www-data .
 
-COPY mysql-entrypoint.sh /usr/local/bin/
+COPY mysql-start.sh /usr/local/bin/
+COPY mysql-firstrun.sh /usr/local/bin/
+COPY civicrm-firstrun.sh /usr/local/bin/
 COPY start.sh /usr/local/bin
+COPY civicrm.sql /mysql-initdb.d/
+COPY drupal.sql /mysql-initdb.d/
+COPY sites-default-source/ /sites-default-source/
 
 CMD ["start.sh"]
