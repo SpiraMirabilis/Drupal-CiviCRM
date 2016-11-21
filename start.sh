@@ -2,6 +2,7 @@
 MYSQL_PID=""
 APACHE_PID=""
 KILL_TIMEOUT=30
+DELAY="5s"
 
 trap stop SIGHUP
 trap stop SIGINT
@@ -39,6 +40,40 @@ function stop() {
     fi
     echo -e "$(date): faile to shut down own or more servers"
     exit 255
+}
+
+function port_check() {
+    port="$1"
+    program="$2"
+    if ! nc -z -w5 127.0.0.1 ${port}; then
+        echo -e "$(date): ${program} health check failed"
+        count=0
+        while true; do
+            if [ "$count" -gt "$KILL_TIMEOUT" ]; then
+                echo -e "$(date): ${program} not responding"
+                exit 255
+            fi
+            if nc -z -w5 127.0.0.1 ${port}; then
+                echo -e "$(date): ${program} recovered, health check passed"
+                break
+            fi
+            count=$((count+1))
+            sleep 1s
+        done
+    fi
+    unset port program
+}
+function health_check() {
+    if ! cat "/proc/${APACHE_PID}/comm" | grep -q apache; then
+        echo -e "$(date): apache exited unexpectedly"
+        exit 255
+    fi
+    port_check 80 "apache"
+    if ! cat "/proc/${MYSQL_PID}/comm" | grep -q mysql; then
+        echo -e "$(date): mysql exited unexpectedly"
+        exit 255
+    fi
+    port_check 3306 "mysql"
 }
 
 function startup() {
@@ -95,4 +130,9 @@ if [ ! -f /var/www/html/sites/default/settings.php ]; then
     first_run
 fi
 startup
-tail -f /var/log/civicrm/*.log
+tail -f /var/log/civicrm/*.log &
+sleep $DELAY
+while true; do
+    health_check
+    sleep $DELAY
+done
