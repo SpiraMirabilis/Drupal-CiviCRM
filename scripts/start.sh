@@ -94,7 +94,7 @@ function user_variables() {
       export DRUPAL_DATABASE="$DRUPAL_DATABASE"
     else
       export DRUPAL_USER="drupal"
-      export DRUPAL_PASSWORD="drupal"
+      export DRUPAL_PASSWORD="$(pwgen -1 32)"
       export DRUPAL_DATABASE="drupal"
       echo "Drupal user: $DRUPAL_USER"
       echo "Drupal password: $DRUPAL_PASSWORD"
@@ -107,7 +107,7 @@ function user_variables() {
       export CIVICRM_DATABASE="$CIVICRM_DATABSE"
     else
       export CIVICRM_USER="civicrm"
-      export CIVICRM_PASSWORD="civicrm"
+      export CIVICRM_PASSWORD="$(pwgen -1 32)"
       export CIVICRM_DATABASE="civicrm"
       echo "CiviCRM user: $CIVICRM_USER"
       echo "CiviCRM password: $CIVICRM_PASSWORD"
