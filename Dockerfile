@@ -153,12 +153,8 @@ RUN curl -fSL "https://ftp.drupal.org/files/projects/drupal-${DRUPAL_VERSION}.ta
   && rm options_element.tar.gz \
   && chown -R www-data:www-data .
 
-COPY mysql-start.sh /usr/local/bin/
-COPY mysql-firstrun.sh /usr/local/bin/
-COPY civicrm-firstrun.sh /usr/local/bin/
-COPY start.sh /usr/local/bin
-COPY civicrm.sql /mysql-initdb.d/
-COPY drupal.sql /mysql-initdb.d/
+COPY scripts/ /usr/local/bin/
+COPY sql/ /mysql-initdb.d/
 COPY sites-default-source/ /sites-default-source/
 
 CMD ["start.sh"]
