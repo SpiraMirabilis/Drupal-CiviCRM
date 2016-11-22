@@ -151,8 +151,13 @@ RUN curl -fSL "https://ftp.drupal.org/files/projects/drupal-${DRUPAL_VERSION}.ta
   && curl -fSL "https://ftp.drupal.org/files/projects/options_element-7.x-1.12.tar.gz" -o options_element.tar.gz \
   && tar -xf options_element.tar.gz \
   && rm options_element.tar.gz \
-  && chown -R www-data:www-data .
+  && chown -R www-data:www-data . \
+  && php -r "readfile('https://s3.amazonaws.com/files.drush.org/drush.phar');" > /usr/local/bin/drush \
+  && chmod +x /usr/local/bin/drush \
+  && mkdir /root/.drush
 
+COPY .bashrc /root/
+COPY .drush/ /root/.drush/
 COPY scripts/ /usr/local/bin/
 COPY sql/ /mysql-initdb.d/
 COPY sites-default-source/ /sites-default-source/

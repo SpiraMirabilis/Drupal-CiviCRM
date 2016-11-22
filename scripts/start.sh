@@ -81,6 +81,10 @@ function startup() {
     MYSQL_PID=$!
     /usr/local/bin/apache2-foreground > /var/log/civicrm/apache.log 2>&1 &
     APACHE_PID=$!
+    if [ "$ROOT_USER_PASSWORD" ]; then
+        sleep $DELAY
+        /usr/local/bin/drush upwd --password="${ROOT_USER_PASSWORD}" "root"
+    fi
 }
 
 function user_variables() {
