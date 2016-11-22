@@ -62,7 +62,7 @@ if (!defined('CIVICRM_UF')) {
  *      define( 'CIVICRM_UF_DSN', 'mysql://cms_db_username:cms_db_password@db_server/cms_database?new_link=true');
  */
 if (!defined('CIVICRM_UF_DSN')) {
-  define( 'CIVICRM_UF_DSN'           , 'mysql://drupal:drupal@127.0.0.1/drupal?new_link=true');
+  define( 'CIVICRM_UF_DSN'           , 'mysql://##DRUPAL_USER##:##DRUPAL_PASSWORD##@##DATABASE_HOST##/##DRUPAL_DATABASE##?new_link=true');
 }
 
 /**
@@ -85,7 +85,7 @@ if (!defined('CIVICRM_UF_DSN')) {
  *
  */
 if (!defined('CIVICRM_DSN')) {
-  define( 'CIVICRM_DSN'          , 'mysql://civicrm:civicrm@127.0.0.1/civicrm?new_link=true');
+  define( 'CIVICRM_DSN'          , 'mysql://##CIVICRM_USER##:##CIVICRM_PASSWORD##@##DATABASE_HOST##/##CIVICRM_DATABASE##?new_link=true');
 }
 
 /**

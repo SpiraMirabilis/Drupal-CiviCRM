@@ -249,10 +249,10 @@ $databases = array (
   array (
     'default' => 
     array (
-      'database' => 'drupal',
-      'username' => 'drupal',
-      'password' => 'drupal',
-      'host' => '127.0.0.1',
+      'database' => '##DRUPAL_DATABASE##',
+      'username' => '##DRUPAL_USER##',
+      'password' => '##DRUPAL_PASSWORD##',
+      'host' => '##DATABASE_HOST##',
       'port' => '',
       'driver' => 'mysql',
       'prefix' => '',
@@ -290,7 +290,7 @@ $update_free_access = FALSE;
  *   $drupal_hash_salt = file_get_contents('/home/example/salt.txt');
  *
  */
-$drupal_hash_salt = 'bkNyAb061qvYLaqsZdhN0VUpud2p0Bg5qna_noFBHEM';
+$drupal_hash_salt = '##HASH_SALT##';
 
 /**
  * Base URL (optional).

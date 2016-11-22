@@ -83,11 +83,11 @@ function startup() {
     APACHE_PID=$!
 }
 
-function user_credentials() {
+function user_variables() {
     if [ "$DRUPAL_USER" -a "$DRUPAL_PASSWORD" -a "$DRUPAL_DATABASE" ]; then
       export DRUPAL_USER="$DRUPAL_USER"
       export DRUPAL_PASSWORD="$DRUPAL_PASSWORD"
-      export DRUPAL_DATABASE="$DURPAL_DATABASE"
+      export DRUPAL_DATABASE="$DRUPAL_DATABASE"
     else
       export DRUPAL_USER="drupal"
       export DRUPAL_PASSWORD="drupal"
@@ -116,14 +116,17 @@ function user_credentials() {
       export MYSQL_ROOT_PASSWORD="$(pwgen -1 32)"
       echo "MySQL root password: $MYSQL_ROOT_PASSWORD"
     fi
+
+    export HASH_SALT="$(pwgen -1 32)"
+    export DATABASE_HOST="127.0.0.1"
 }
 
 function first_run() {
     mkdir -p /var/log/civicrm
     chmod 755 /var/log/civicrm
-    user_credentials
-    /usr/local/bin/mysql-firstrun.sh
+    user_variables
     /usr/local/bin/civicrm-firstrun.sh
+    /usr/local/bin/mysql-firstrun.sh
 }
 
 if [ ! -f /var/www/html/sites/default/settings.php ]; then

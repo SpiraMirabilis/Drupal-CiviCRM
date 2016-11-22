@@ -16,12 +16,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `civicrm`
+-- Current Database: `##CIVICRM_DATABASE##`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `civicrm` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `##CIVICRM_DATABASE##` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
-USE `civicrm`;
+USE `##CIVICRM_DATABASE##`;
 
 --
 -- Table structure for table `civicrm_acl`
