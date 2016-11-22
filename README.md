@@ -8,41 +8,57 @@ Drupal is an open source content management platform powering millions of websit
 
 ## Start CiviCRM
 
-```docker run -d --name civicrm -p 80:80 jmizell/drupal-civicrm```
+```
+docker run -d --name civicrm -p 80:80 jmizell/drupal-civicrm
+```
 
-Default user name is "root", and the default password is "drupal", change this immediately. 
+Default user name is "root", and the default password is "drupal", change this immediately, or set it with the ROOT_USER_PASSWORD environment variable.
 
 ## Environment Variables
 When you start the CiviCRM image, you can adjust the configuration of the CiviCRM instance by passing one or more environment variables on the docker run command line. Do note that none of the variables below will have any effect if you start the container with a data directory that already contains a database: any pre-existing database will always be left untouched on container startup.
 
+#### ROOT_USER_PASSWORD
+The Drupal administrator user password. When this variable is set, the password for the administrator user (root), is set each time the container starts. Defaults to drupal.
+
 #### DRUPAL_USER
-Specified a custom Drupal Mariadb user. Defaults to drupal.
+Specifies a custom Drupal database user. This variable is not used unless the variables DRUPAL_USER, DRUPAL_PASSWORD, and DRUPAL_DATABASE are all set. Defaults to drupal.
 
 #### DRUPAL_PASSWORD
-Specified a custom Drupal Mariadb user password. If left blank, a random password will be generated, and logged to standard out.
+Specifies a custom Drupal database user password. This variable is not used unless the variables DRUPAL_USER, DRUPAL_PASSWORD, and DRUPAL_DATABASE are all set. If left blank, a random password will be generated, and logged to standard out.
 
 #### DRUPAL_DATABASE
-Specifies the Drupal database name in Mariadb. Defaults to drupal.
+Specifies the Drupal database name in the database. This variable is not used unless the variables DRUPAL_USER, DRUPAL_PASSWORD, and DRUPAL_DATABASE are all set. Defaults to drupal.
 
 #### CIVICRM_USER
-Specified a custom CiviCRM Mariadb user. Defaults to civicrm.
+Specifies a custom CiviCRM database user. This variable is not used unless the variables CIVICRM_USER, CIVICRM_PASSWORD, CIVICRM_DATABSE are all set. Defaults to civicrm.
 
 #### CIVICRM_PASSWORD
-Specified a custom CiviCRM Mariadb user password. If left blank, a random password will be generated, and logged to standard out.
+Specifies a custom CiviCRM database user password. This variable is not used unless the variables CIVICRM_USER, CIVICRM_PASSWORD, CIVICRM_DATABSE are all set. If left blank, a random password will be generated, and logged to standard out.
 
 #### CIVICRM_DATABASE
-Specifies the CiviCRM database name in Mariadb. Defaults to civicrm.
+Specifies the CiviCRM database name in the database. This variable is not used unless the variables CIVICRM_USER, CIVICRM_PASSWORD, CIVICRM_DATABSE are all set. Defaults to civicrm.
 
 #### MYSQL_ROOT_PASSWORD
-Specified the root password for Mariadb. If left blank, a random password will be generated, and logged to standard out.
+Specifies the root password for Mariadb. If left blank, a random password will be generated, and logged to standard out.
 
 ## Using an external Mariadb\MySQL server
 
 todo: implement this option
 
 ## Specifying database credentials
+The Drupal, and CiviCRM database credentials can be set manually by specifieing their environment variables. All three environment variables for the Drupal, or CiviCRM database must be set for them to be used. On first run, if no database volume is set, the user, and database will be created.
 
-todo: implement this option
+```
+docker run \
+  -d \
+  --name civicrm \
+  -p 80:80 \
+  -v /srv/civicrm/settings:/var/www/html/sites/default \
+  -e DRUPAL_USER="someuser" \
+  -e DRUPAL_PASSWORD="somepassword" \
+  -e DRUPAL_DATABASE="somedatabase" \
+  jmizell/drupal-civicrm
+```
 
 ## Where to Store Data
 
