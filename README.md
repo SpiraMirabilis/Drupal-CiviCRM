@@ -46,7 +46,7 @@ Specifies the root password for Mariadb. If left blank, a random password will b
 todo: implement this option
 
 ## Specifying database credentials
-The Drupal, and CiviCRM database credentials can be set manually by specifieing their environment variables. All three environment variables for the Drupal, or CiviCRM database must be set for them to be used. On first run, if no database volume is set, the user, and database will be created.
+The Drupal, and CiviCRM database credentials can be set manually by specifying their environment variables. All three environment variables for the Drupal, or CiviCRM database must be set for them to be used. On first run, if no database volume is set, the users, and databases will be created automatically.
 
 ```
 docker run \
