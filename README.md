@@ -2,9 +2,15 @@
 
 CiviCRM is a web-based, open source, internationalized suite of computer software for constituency relationship management, that falls under the broad rubric of customer relationship management. It is specifically designed for the needs of non-profit, non-governmental, and advocacy groups, and serves as an association management system. CiviCRM is designed to manage information about an organization's donors, members, event registrants, subscribers, grant application seekers and funders, and case contacts. Volunteers, activists, voters as well as more general sorts of business contacts such as employees, clients, or vendors can be managed using CiviCRM.
 
+## What is Drupal?
+
+Drupal is an open source content management platform powering millions of websites and applications.
+
 ## Start CiviCRM
 
 ```docker run -d --name civicrm -p 80:80 jmizell/drupal-civicrm```
+
+Default user name is "root", and the default password is "drupal", change this immediately. 
 
 ## Environment Variables
 When you start the CiviCRM image, you can adjust the configuration of the CiviCRM instance by passing one or more environment variables on the docker run command line. Do note that none of the variables below will have any effect if you start the container with a data directory that already contains a database: any pre-existing database will always be left untouched on container startup.
