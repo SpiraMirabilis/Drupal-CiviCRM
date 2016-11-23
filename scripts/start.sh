@@ -104,7 +104,7 @@ function user_variables() {
     if [ "$CIVICRM_USER" -a "$CIVICRM_PASSWORD" -a "$CIVICRM_DATABASE" ]; then
       export CIVICRM_USER="$CIVICRM_USER"
       export CIVICRM_PASSWORD="$CIVICRM_PASSWORD"
-      export CIVICRM_DATABASE="$CIVICRM_DATABSE"
+      export CIVICRM_DATABASE="$CIVICRM_DATABASE"
     else
       export CIVICRM_USER="civicrm"
       export CIVICRM_PASSWORD="$(pwgen -1 32)"
