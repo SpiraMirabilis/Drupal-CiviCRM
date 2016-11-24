@@ -121,6 +121,10 @@ function user_variables() {
       echo "MySQL root password: $MYSQL_ROOT_PASSWORD"
     fi
 
+    if [ "$BASE_URL" ]; then
+        export BASE_URL="$BASE_URL"
+    fi
+
     export HASH_SALT="$(pwgen -1 32)"
     export DATABASE_HOST="127.0.0.1"
 }

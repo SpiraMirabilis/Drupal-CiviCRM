@@ -12,6 +12,9 @@ sed -i 's/##DRUPAL_USER##/'"${DRUPAL_USER}"'/g' /var/www/html/sites/default/sett
 sed -i 's/##DRUPAL_PASSWORD##/'"${DRUPAL_PASSWORD}"'/g' /var/www/html/sites/default/settings.php
 sed -i 's/##DRUPAL_DATABASE##/'"${DRUPAL_DATABASE}"'/g' /var/www/html/sites/default/settings.php
 sed -i 's/##HASH_SALT##/'"${HASH_SALT}"'/g' /var/www/html/sites/default/settings.php
+if [ "$BASE_URL" ]; then
+    sed -i 's%##BASE_URL##%$base_url = '"'${BASE_URL}'"';%g' /var/www/html/sites/default/settings.php
+fi
 
 ## set drupal database name in sql
 sed -i 's/##DRUPAL_DATABASE##/'"${DRUPAL_DATABASE}"'/g' /mysql-initdb.d/drupal.sql

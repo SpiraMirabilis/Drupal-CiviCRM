@@ -314,6 +314,8 @@ $drupal_hash_salt = '##HASH_SALT##';
  */
 # $base_url = 'http://www.example.com';  // NO trailing slash!
 
+##BASE_URL##
+
 /**
  * PHP settings:
  *
