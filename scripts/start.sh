@@ -77,9 +77,9 @@ function health_check() {
 }
 
 function startup() {
-    /usr/local/bin/mysql-start.sh > /var/log/civicrm/mysql.log 2>&1 &
+    /usr/local/bin/mysql-start.sh >> /var/log/civicrm/mysql.log 2>&1 &
     MYSQL_PID=$!
-    /usr/local/bin/apache2-foreground > /var/log/civicrm/apache.log 2>&1 &
+    /usr/local/bin/apache2-foreground >> /var/log/civicrm/apache.log 2>&1 &
     APACHE_PID=$!
     if [ "$ROOT_USER_PASSWORD" ]; then
         sleep $DELAY
