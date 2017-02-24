@@ -9,7 +9,7 @@ Drupal is an open source content management platform powering millions of websit
 ## Start CiviCRM
 
 ```
-docker run -d --name civicrm -p 80:80 jmizell/drupal-civicrm
+docker run -d --name civicrm -p 80:80 valuablesquirrel/drupal-civicrm
 ```
 
 Default user name is "root", and the default password is "drupal", change this immediately, or set it with the ROOT_USER_PASSWORD environment variable.
@@ -57,7 +57,7 @@ docker run \
   -e DRUPAL_USER="someuser" \
   -e DRUPAL_PASSWORD="somepassword" \
   -e DRUPAL_DATABASE="somedatabase" \
-  jmizell/drupal-civicrm
+  valuablesquirrel/drupal-civicrm
 ```
 
 ## Where to Store Data
@@ -72,5 +72,5 @@ docker run \
   -v /srv/civicrm/themes:/var/www/html/sites/all/themes \
   -v /srv/civicrm/mariadb:/var/lib/mysql \
   -v /srv/civicrm/logs:/var/log/civicrm \
-  jmizell/drupal-civicrm
+  valuablesquirrel/drupal-civicrm
   ```
