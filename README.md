@@ -1,3 +1,8 @@
+# Discontinued
+After spending some time trying configure CiviCRM, I've decided that for the project I had in mind, it requires too much effort to configure, and it doesn't have the ease of use necessary for bringing in non-technical volunteers. While CiciCRM looks great on paper, and I believe would make a good choice for many non-profits, for my needs it would require too many resources to get basic functionality. 
+
+I'm no longer planning to update this repo, but I will leave it up as an example of how you can deploy CiviCRM in a docker container.
+
 ## What is CiviCRM?
 
 CiviCRM is a web-based, open source, internationalized suite of computer software for constituency relationship management, that falls under the broad rubric of customer relationship management. It is specifically designed for the needs of non-profit, non-governmental, and advocacy groups, and serves as an association management system. CiviCRM is designed to manage information about an organization's donors, members, event registrants, subscribers, grant application seekers and funders, and case contacts. Volunteers, activists, voters as well as more general sorts of business contacts such as employees, clients, or vendors can be managed using CiviCRM.
